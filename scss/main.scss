@@ -2,9 +2,23 @@ $primary-color: #FFEFE7;
 $secondary-color: #FFDAC6;
 $tertiary-color: #BABD8D;
 $primary-text-color: #7C6A0A;
-$quaternion-colon: #FA9500;
+$quaternary-color: #FA9500;
 $font-stack: 'IBM Plex Sans', sans-serif;
 $paragraph-size: 1.5em;
+
+@mixin flexCenter($direction, $content, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $content;
+  align-items: $align;
+}
+
+@mixin buttonStyle {
+  button {
+    background: none;
+    border-style: none;
+  }
+}
 
 body {
   margin: 0px;
@@ -13,91 +27,129 @@ body {
   font-family: $font-stack;
 }
 
-// Estilos para nav
 nav {
   width: auto;
-  display: flex;
-  justify-content: space-between;
+  @include flexCenter(row, space-between, center);
   color: $primary-text-color;
   padding: 15px;
+  
   p {
-    font-size: 1.5em;
+    font-size: $paragraph-size;
     padding-left: 30px;
   }
+  
   .icons {
     display: flex;
     gap: 15px;
-    button {
-      background: none;
-      border-style: none;
-    }
+    @include buttonStyle;
   }
 }
 
 article {
   width: auto;
   color: $primary-text-color;
-  display: flex;
+  @include flexCenter(row, space-between, center);
   padding-left: 45px;
   padding-right: 45px;
   padding-top: 70px;
-  justify-content: space-between;
-.impact-section {
-  display: flex;
-  flex-direction: column;
-  padding-top: 50px;
-  gap: 25px;
-}
-  h1{
+  
+  .impact-section {
+    @include flexCenter(column, space-evenly, flex-start);
+    padding-top: 50px;
+    gap: 25px;
+  }
+  
+  h1 {
     font-size: 3em;
     padding: 0px;
     margin: 0px;
   }
-  p{
+  
+  p {
     font-size: $paragraph-size;
   }
-  button{
+  
+  @include buttonStyle;
+  
+  button {
     width: 12vw;
     padding: 20px;
-    background-color: $quaternion-colon;
-    border-style: none;
+    background-color: $quaternary-color;
     border-radius: 35px;
     color: white;
     font-size: 1em;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
   }
-  img{
+  
+  img {
     width: 25vw;
     border-radius: 19px;
   }
 }
 
 section {
-  width: 100%;
+  width: auto;
   height: auto;
   padding: 60px;
   
-  h2{
+  h2 {
     color: $primary-text-color;
     font-size: 2em;
   }
+  
   .healthcare {
-    h2{
+    padding-bottom: 60px;
+    
+    h2 {
       font-weight: 300;
       padding-bottom: 60px;
     }
-    .product-card {
-      width: 15vw;
+    
+    .card-section {
+      width: auto;
       height: auto;
+      @include flexCenter(row, space-evenly, center);
+      flex-wrap: wrap;
+      column-gap: 200px;
+      row-gap: 80px;
+    }
+    
+    .product-card {
+      width: 14vw;
+      height: 45vh;
       background-color: $secondary-color;
       color: $primary-text-color;
       padding: 20px;
       border-radius: 8px;
-
-      img {
-        width: 200px;
-        height: 250px;
-        background-image: cover;
-        border-radius: 6px;
+      
+      .icon {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-bottom: 12px;
+        
+        svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+      
+      .product-image {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        img {
+          width: 12vw;
+          height: 30vh;
+          object-fit: cover;
+          border-radius: 6px;
+        }
       }
     }
   }
