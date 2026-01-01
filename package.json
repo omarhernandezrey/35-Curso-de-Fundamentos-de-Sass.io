@@ -1,0 +1,23 @@
+{
+  "name": "eco-store",
+  "version": "1.0.0",
+  "description": "Eco-Store - Tienda de productos ecológicos y sostenibles",
+  "main": "index.html",
+  "scripts": {
+    "sass": "sass scss/main.scss css/main.css",
+    "sass:watch": "sass --watch scss/main.scss:css/main.css",
+    "start": "sass --watch scss/main.scss:css/main.css"
+  },
+  "keywords": [
+    "eco-store",
+    "sass",
+    "scss",
+    "ecologico",
+    "sostenible"
+  ],
+  "author": "Omar Hernandez",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.77.8"
+  }
+}

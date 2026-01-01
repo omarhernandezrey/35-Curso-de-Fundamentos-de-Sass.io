@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Responsive - Eco-Store</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+    }
+    
+    .info-section {
+      background: #f0f4f8;
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .info-section h2 {
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 1.8em;
+    }
+    
+    .info-section p {
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    
+    .info-section code {
+      background: #e2e8f0;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      color: #764ba2;
+    }
+    
+    .viewport-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .info-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .info-card h3 {
+      font-size: 1em;
+      margin-bottom: 10px;
+      opacity: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .info-card .value {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .info-card .label {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    
+    .breakpoint-indicator {
+      background: #fff;
+      border: 3px solid #667eea;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    .breakpoint-indicator h3 {
+      color: #764ba2;
+      margin-bottom: 10px;
+      font-size: 1.5em;
+    }
+    
+    .device-type {
+      font-size: 2em;
+      font-weight: bold;
+      color: #667eea;
+      margin: 10px 0;
+    }
+    
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    @media (max-width: 1400px) {
+      .test-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
+    
+    @media (max-width: 1024px) {
+      .test-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .test-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+      
+      .container {
+        padding: 25px;
+      }
+      
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .test-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 1.5em;
+      }
+      
+      .info-card .value {
+        font-size: 2em;
+      }
+    }
+    
+    .test-card {
+      background: white;
+      border: 2px solid #e2e8f0;
+      padding: 20px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .test-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border-color: #667eea;
+    }
+    
+    .test-card-image {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3em;
+    }
+    
+    @media (max-width: 768px) {
+      .test-card-image {
+        height: 120px;
+        font-size: 2.5em;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .test-card {
+        display: grid;
+        grid-template-areas:
+          "image image icon"
+          "title title title"
+          "desc desc desc";
+        grid-template-columns: 1fr 1fr auto;
+        gap: 12px;
+      }
+      
+      .test-card-image {
+        grid-area: image;
+        height: 100px;
+        font-size: 2em;
+      }
+      
+      .test-card h4 {
+        grid-area: title;
+      }
+      
+      .test-card p {
+        grid-area: desc;
+      }
+      
+      .test-card-icon {
+        grid-area: icon;
+      }
+    }
+    
+    .test-card h4 {
+      color: #333;
+      margin-bottom: 8px;
+      font-size: 1.2em;
+    }
+    
+    .test-card p {
+      color: #666;
+      line-height: 1.5;
+      font-size: 0.95em;
+    }
+    
+    .test-card-icon {
+      width: 30px;
+      height: 30px;
+      background: #667eea;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .test-card-icon:hover {
+      background: #764ba2;
+      transform: scale(1.1);
+    }
+    
+    @media (max-width: 480px) {
+      .test-card-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 1em;
+      }
+    }
+    
+    .checklist {
+      background: #f7fafc;
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 30px;
+    }
+    
+    .checklist h3 {
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 8px;
+      background: white;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .checklist-item:hover {
+      background: #edf2f7;
+    }
+    
+    .checklist-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    
+    .checklist-item label {
+      cursor: pointer;
+      color: #333;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #e2e8f0;
+      color: #666;
+    }
+    
+    .button {
+      display: inline-block;
+      padding: 15px 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 10px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    @media (max-width: 480px) {
+      .button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Test Responsive - Eco-Store</h1>
+    
+    <div class="info-section">
+      <h2>📱 Información del Viewport</h2>
+      <p>Esta página muestra información en tiempo real sobre el tamaño de tu pantalla y el breakpoint activo.</p>
+    </div>
+    
+    <div class="viewport-info">
+      <div class="info-card">
+        <h3>Ancho</h3>
+        <div class="value" id="width">-</div>
+        <div class="label">píxeles</div>
+      </div>
+      
+      <div class="info-card">
+        <h3>Alto</h3>
+        <div class="value" id="height">-</div>
+        <div class="label">píxeles</div>
+      </div>
+      
+      <div class="info-card">
+        <h3>Ratio</h3>
+        <div class="value" id="ratio">-</div>
+        <div class="label">aspecto</div>
+      </div>
+      
+      <div class="info-card">
+        <h3>DPR</h3>
+        <div class="value" id="dpr">-</div>
+        <div class="label">pixel ratio</div>
+      </div>
+    </div>
+    
+    <div class="breakpoint-indicator">
+      <h3>Breakpoint Actual</h3>
+      <div class="device-type" id="deviceType">-</div>
+      <p id="breakpointInfo">-</p>
+    </div>
+    
+    <div class="info-section">
+      <h2>🎨 Grid Test Layout</h2>
+      <p>Las cards a continuación usan el mismo sistema de Grid CSS que Eco-Store:</p>
+      <p><code>grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))</code></p>
+      <p>Redimensiona la ventana para ver cómo se adaptan las cards automáticamente.</p>
+    </div>
+    
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-card-image">🌱</div>
+        <div class="test-card-icon">❤️</div>
+        <h4>Producto Eco 1</h4>
+        <p>Descripción del producto ecológico y sostenible.</p>
+      </div>
+      
+      <div class="test-card">
+        <div class="test-card-image">🍃</div>
+        <div class="test-card-icon">❤️</div>
+        <h4>Producto Eco 2</h4>
+        <p>Descripción del producto ecológico y sostenible.</p>
+      </div>
+      
+      <div class="test-card">
+        <div class="test-card-image">🌿</div>
+        <div class="test-card-icon">❤️</div>
+        <h4>Producto Eco 3</h4>
+        <p>Descripción del producto ecológico y sostenible.</p>
+      </div>
+      
+      <div class="test-card">
+        <div class="test-card-image">🌾</div>
+        <div class="test-card-icon">❤️</div>
+        <h4>Producto Eco 4</h4>
+        <p>Descripción del producto ecológico y sostenible.</p>
+      </div>
+      
+      <div class="test-card">
+        <div class="test-card-image">🌻</div>
+        <div class="test-card-icon">❤️</div>
+        <h4>Producto Eco 5</h4>
+        <p>Descripción del producto ecológico y sostenible.</p>
+      </div>
+      
+      <div class="test-card">
+        <div class="test-card-image">🌵</div>
+        <div class="test-card-icon">❤️</div>
+        <h4>Producto Eco 6</h4>
+        <p>Descripción del producto ecológico y sostenible.</p>
+      </div>
+    </div>
+    
+    <div class="checklist">
+      <h3>✅ Checklist de Testing Responsive</h3>
+      
+      <div class="checklist-item">
+        <input type="checkbox" id="check1">
+        <label for="check1">Grid se adapta correctamente en diferentes tamaños</label>
+      </div>
+      
+      <div class="checklist-item">
+        <input type="checkbox" id="check2">
+        <label for="check2">Cards mantienen proporciones adecuadas</label>
+      </div>
+      
+      <div class="checklist-item">
+        <input type="checkbox" id="check3">
+        <label for="check3">Texto legible en todos los dispositivos</label>
+      </div>
+      
+      <div class="checklist-item">
+        <input type="checkbox" id="check4">
+        <label for="check4">Touch targets ≥ 44px en móviles</label>
+      </div>
+      
+      <div class="checklist-item">
+        <input type="checkbox" id="check5">
+        <label for="check5">Animaciones suaves sin lag</label>
+      </div>
+      
+      <div class="checklist-item">
+        <input type="checkbox" id="check6">
+        <label for="check6">Sin scroll horizontal en móviles</label>
+      </div>
+      
+      <div class="checklist-item">
+        <input type="checkbox" id="check7">
+        <label for="check7">Espaciado apropiado entre elementos</label>
+      </div>
+      
+      <div class="checklist-item">
+        <input type="checkbox" id="check8">
+        <label for="check8">Layout de card móvil funciona correctamente (< 480px)</label>
+      </div>
+    </div>
+    
+    <div class="info-section" style="margin-top: 30px;">
+      <h2>🚀 Siguiente Paso</h2>
+      <p>Una vez verificado el diseño responsive, vuelve a la página principal:</p>
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="index.html" class="button">← Volver a Eco-Store</a>
+        <a href="MOBILE-GUIDE.md" class="button">📖 Ver Guía Móvil</a>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p><strong>Eco-Store Responsive Test</strong></p>
+      <p>© 2026 Omar Hernández Rey - MIT License</p>
+    </div>
+  </div>
+  
+  <script>
+    function updateViewportInfo() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const ratio = (width / height).toFixed(2);
+      const dpr = window.devicePixelRatio || 1;
+      
+      document.getElementById('width').textContent = width;
+      document.getElementById('height').textContent = height;
+      document.getElementById('ratio').textContent = ratio;
+      document.getElementById('dpr').textContent = dpr.toFixed(1);
+      
+      let deviceType = '';
+      let breakpointInfo = '';
+      
+      if (width <= 480) {
+        deviceType = '📱 Móvil Pequeño';
+        breakpointInfo = 'max-width: 480px | Grid: 1 columna';
+      } else if (width <= 768) {
+        deviceType = '📱 Móvil / Tablet';
+        breakpointInfo = 'max-width: 768px | Grid: 2 columnas';
+      } else if (width <= 1024) {
+        deviceType = '💻 Tablet Landscape';
+        breakpointInfo = 'max-width: 1024px | Grid: auto-fill minmax(220px, 1fr)';
+      } else if (width <= 1200) {
+        deviceType = '🖥️ Laptop';
+        breakpointInfo = 'max-width: 1200px | Grid: auto-fill minmax(250px, 1fr)';
+      } else if (width <= 1400) {
+        deviceType = '🖥️ Desktop';
+        breakpointInfo = 'max-width: 1400px | Grid: auto-fill minmax(250px, 1fr)';
+      } else {
+        deviceType = '🖥️ Large Desktop';
+        breakpointInfo = 'No max-width | Grid: auto-fill minmax(280px, 1fr)';
+      }
+      
+      document.getElementById('deviceType').textContent = deviceType;
+      document.getElementById('breakpointInfo').textContent = breakpointInfo;
+    }
+    
+    // Actualizar al cargar
+    updateViewportInfo();
+    
+    // Actualizar al redimensionar
+    window.addEventListener('resize', updateViewportInfo);
+    
+    // Logging para debugging
+    console.log('%c🎨 Eco-Store Responsive Test', 'color: #667eea; font-size: 20px; font-weight: bold;');
+    console.log('Viewport:', window.innerWidth, 'x', window.innerHeight);
+    console.log('Device Pixel Ratio:', window.devicePixelRatio);
+    console.log('User Agent:', navigator.userAgent);
+  </script>
+</body>
+</html>
